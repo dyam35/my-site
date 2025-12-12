@@ -7,6 +7,18 @@
     <style>
       :root {
         color-scheme: dark;
+        --bg-0: #040611;
+        --bg-1: #060814;
+        --bg-2: #0b1020;
+        --panel: rgba(15, 23, 42, 0.55);
+        --panel-strong: rgba(15, 23, 42, 0.72);
+        --border: rgba(148, 163, 184, 0.14);
+        --border-strong: rgba(148, 163, 184, 0.22);
+        --text: rgba(226, 232, 240, 0.92);
+        --muted: rgba(226, 232, 240, 0.74);
+        --subtle: rgba(148, 163, 184, 0.85);
+        --accent: rgba(147, 197, 253, 0.95);
+        --accent-border: rgba(147, 197, 253, 0.35);
       }
 
       body {
@@ -14,8 +26,8 @@
           sans-serif;
         margin: 0;
         min-height: 100vh;
-        background: radial-gradient(circle at top, #0b1020, #060814 55%, #040611 100%);
-        color: #e2e8f0;
+        background: radial-gradient(circle at top, var(--bg-2), var(--bg-1) 55%, var(--bg-0) 100%);
+        color: var(--text);
         display: flex;
         justify-content: center;
         padding: 2rem;
@@ -24,14 +36,28 @@
 
       main {
         width: min(960px, 100%);
-        background: rgba(2, 6, 23, 0.62);
+        background: rgba(2, 6, 23, 0.66);
         border-radius: 28px;
         padding: clamp(2rem, 4vw, 3rem);
         box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
-        border: 1px solid rgba(148, 163, 184, 0.14);
+        border: 1px solid var(--border);
         backdrop-filter: blur(10px);
         position: relative;
         z-index: 1;
+      }
+
+      main::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 28px;
+        pointer-events: none;
+        background: radial-gradient(
+          900px 240px at 30% 0%,
+          rgba(147, 197, 253, 0.08),
+          transparent 60%
+        );
+        mask: linear-gradient(#000, transparent 22%);
       }
 
       header {
@@ -47,17 +73,21 @@
 
       h1 + p {
         margin-top: 0.6rem;
-        color: rgba(226, 232, 240, 0.8);
+        color: var(--muted);
         font-size: 1.15rem;
       }
 
       .tagline {
         margin-top: 0.8rem;
         display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
         padding: 0.4rem 1rem;
         border-radius: 999px;
         background: rgba(148, 163, 184, 0.12);
+        border: 1px solid rgba(148, 163, 184, 0.16);
         font-size: 0.95rem;
+        color: rgba(226, 232, 240, 0.88);
       }
 
       section + section {
@@ -67,20 +97,21 @@
       section h2 {
         margin-bottom: 0.2rem;
         font-size: 1.4rem;
-        color: rgba(226, 232, 240, 0.92);
+        color: var(--text);
+        letter-spacing: 0.02em;
       }
 
       p {
         margin: 0;
-        color: rgba(226, 232, 240, 0.75);
+        color: var(--muted);
         line-height: 1.6;
       }
 
       .panel {
-        background: rgba(15, 23, 42, 0.55);
+        background: var(--panel);
         border-radius: 18px;
         padding: 1.4rem;
-        border: 1px solid rgba(148, 163, 184, 0.14);
+        border: 1px solid var(--border);
       }
 
       .panel ul {
@@ -111,20 +142,97 @@
       }
 
       a {
-        color: rgba(147, 197, 253, 0.95);
+        color: var(--accent);
         text-decoration: none;
-        border-bottom: 1px solid rgba(147, 197, 253, 0.35);
+        border-bottom: 1px solid var(--accent-border);
       }
 
       a:hover {
         border-bottom-color: rgba(147, 197, 253, 0.75);
       }
 
+      b,
+      strong {
+        color: rgba(226, 232, 240, 0.96);
+      }
+
+      .table-wrap {
+        overflow: auto;
+        margin-top: 1rem;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(2, 6, 23, 0.38);
+      }
+
+      table.compare {
+        width: 100%;
+        min-width: 900px;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: 13.5px;
+        line-height: 1.5;
+      }
+
+      table.compare thead th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        text-align: left;
+        padding: 12px 12px;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.92),
+          rgba(15, 23, 42, 0.75)
+        );
+        color: rgba(226, 232, 240, 0.92);
+        border-bottom: 1px solid var(--border-strong);
+        backdrop-filter: blur(10px);
+      }
+
+      table.compare tbody td {
+        padding: 12px 12px;
+        color: rgba(226, 232, 240, 0.78);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.10);
+        vertical-align: top;
+      }
+
+      table.compare tbody tr:nth-child(odd) td {
+        background: rgba(15, 23, 42, 0.26);
+      }
+
+      table.compare tbody tr:hover td {
+        background: rgba(59, 130, 246, 0.12);
+        color: rgba(226, 232, 240, 0.92);
+      }
+
+      table.compare td:first-child,
+      table.compare th:first-child {
+        width: 240px;
+      }
+
       small {
-        color: rgba(148, 163, 184, 0.85);
+        color: var(--subtle);
         display: block;
         text-align: center;
         margin-top: 2rem;
+      }
+
+      @media (max-width: 560px) {
+        body {
+          padding: 1.2rem;
+        }
+
+        header {
+          margin-bottom: 1.5rem;
+        }
+
+        section + section {
+          margin-top: 1.2rem;
+        }
+
+        .panel {
+          padding: 1.1rem;
+        }
       }
     </style>
   </head>
@@ -180,56 +288,56 @@
 
       <section>
         <div class="panel">
-          <h2>他社サービスとの比較（要確認）</h2>
+          <h2>他社サービスとの比較</h2>
           <p>
-            以下は比較のための観点まとめです。料金やリリース時期、性能評価はプラン/地域/時期で変わるため、<b>最新情報の確認が必要</b>です。
+            以下は比較のための観点まとめです。料金やリリース時期、性能評価はプラン/地域/時期で変わるため、<b>公式の一次情報</b>で確認してください。
           </p>
-          <div style="overflow:auto; margin-top: 1rem">
-            <table style="width:100%; border-collapse: collapse; min-width: 860px">
+          <div class="table-wrap">
+            <table class="compare">
               <thead>
                 <tr>
-                  <th style="text-align:left; padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.18);">サービス</th>
-                  <th style="text-align:left; padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.18);">料金（目安）</th>
-                  <th style="text-align:left; padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.18);">性能/強みメモ</th>
-                  <th style="text-align:left; padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.18);">特徴</th>
-                  <th style="text-align:left; padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.18);">リリース時期</th>
+                  <th>サービス</th>
+                  <th>料金（目安）</th>
+                  <th>性能/強みメモ</th>
+                  <th>特徴</th>
+                  <th>リリース時期</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">OpenAI / Codex CLI</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">リポジトリ操作＋実行を含むタスク駆動</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">CLI中心、編集とコマンド実行の往復</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                  <td>OpenAI / Codex CLI</td>
+                  <td>-</td>
+                  <td>リポジトリ操作＋実行を含むタスク駆動</td>
+                  <td>CLI中心、編集とコマンド実行の往復</td>
+                  <td>-</td>
                 </tr>
                 <tr>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">GitHub / Copilot</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">補完/チャット/提案のIDE統合</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">エディタ内の体験が強い</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                  <td>GitHub / Copilot</td>
+                  <td>-</td>
+                  <td>補完/チャット/提案のIDE統合</td>
+                  <td>エディタ内の体験が強い</td>
+                  <td>-</td>
                 </tr>
                 <tr>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">Amazon / Q Developer（旧CodeWhisperer等）</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">AWS文脈の支援が強い可能性（要確認）</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">クラウド連携・運用導線</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                  <td>Amazon / Q Developer（旧CodeWhisperer等）</td>
+                  <td>-</td>
+                  <td>AWS文脈の開発支援</td>
+                  <td>クラウド連携・運用導線</td>
+                  <td>-</td>
                 </tr>
                 <tr>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">Google / Gemini Code Assist</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">Google系ツール連携（要確認）</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">IDE/クラウド連携の選択肢</td>
-                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                  <td>Google / Gemini Code Assist</td>
+                  <td>-</td>
+                  <td>Google系ツール連携</td>
+                  <td>IDE/クラウド連携の選択肢</td>
+                  <td>-</td>
                 </tr>
                 <tr>
-                  <td style="padding: 10px;">Cursor（AIコードエディタ）</td>
-                  <td style="padding: 10px;">要確認</td>
-                  <td style="padding: 10px;">エディタ内での対話・編集フロー</td>
-                  <td style="padding: 10px;">プロジェクト横断編集の体験</td>
-                  <td style="padding: 10px;">要確認</td>
+                  <td>Cursor（AIコードエディタ）</td>
+                  <td>-</td>
+                  <td>エディタ内での対話・編集フロー</td>
+                  <td>プロジェクト横断編集の体験</td>
+                  <td>-</td>
                 </tr>
               </tbody>
             </table>
@@ -237,7 +345,7 @@
         </div>
       </section>
 
-      <small><a href="./particles.html">Particle demo</a> / Always learning, always improving.</small>
+      <small>Always learning, always improving.</small>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.3/lib/p5.min.js"></script>
