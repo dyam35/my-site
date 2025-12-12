@@ -2,11 +2,11 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <title>Daisuke | IT Engineer</title>
+    <title>Codex CLI: ターミナルで“実装まで走る”AI開発アシスタント</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       :root {
-        color-scheme: light;
+        color-scheme: dark;
       }
 
       body {
@@ -14,19 +14,24 @@
           sans-serif;
         margin: 0;
         min-height: 100vh;
-        background: radial-gradient(circle at top, #f5f7ff, #dfe7ff 40%, #e4ecff 60%);
-        color: #0f172a;
+        background: radial-gradient(circle at top, #0b1020, #060814 55%, #040611 100%);
+        color: #e2e8f0;
         display: flex;
         justify-content: center;
         padding: 2rem;
+        position: relative;
       }
 
       main {
         width: min(960px, 100%);
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(2, 6, 23, 0.62);
         border-radius: 28px;
         padding: clamp(2rem, 4vw, 3rem);
-        box-shadow: 0 30px 60px rgba(15, 23, 42, 0.15);
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+        border: 1px solid rgba(148, 163, 184, 0.14);
+        backdrop-filter: blur(10px);
+        position: relative;
+        z-index: 1;
       }
 
       header {
@@ -42,7 +47,7 @@
 
       h1 + p {
         margin-top: 0.6rem;
-        color: #475569;
+        color: rgba(226, 232, 240, 0.8);
         font-size: 1.15rem;
       }
 
@@ -51,7 +56,7 @@
         display: inline-flex;
         padding: 0.4rem 1rem;
         border-radius: 999px;
-        background: rgba(15, 23, 42, 0.05);
+        background: rgba(148, 163, 184, 0.12);
         font-size: 0.95rem;
       }
 
@@ -62,20 +67,20 @@
       section h2 {
         margin-bottom: 0.2rem;
         font-size: 1.4rem;
-        color: #0f172a;
+        color: rgba(226, 232, 240, 0.92);
       }
 
       p {
         margin: 0;
-        color: #475569;
+        color: rgba(226, 232, 240, 0.75);
         line-height: 1.6;
       }
 
       .panel {
-        background: #f8fafc;
+        background: rgba(15, 23, 42, 0.55);
         border-radius: 18px;
         padding: 1.4rem;
-        border: 1px solid rgba(15, 23, 42, 0.08);
+        border: 1px solid rgba(148, 163, 184, 0.14);
       }
 
       .panel ul {
@@ -91,12 +96,12 @@
         align-items: center;
         gap: 0.7rem;
         font-weight: 500;
-        color: #0f172a;
+        color: rgba(226, 232, 240, 0.9);
       }
 
       .panel li::before {
         content: "•";
-        color: #2563eb;
+        color: #60a5fa;
       }
 
       .hobby {
@@ -105,8 +110,18 @@
         gap: 0.4rem;
       }
 
+      a {
+        color: rgba(147, 197, 253, 0.95);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(147, 197, 253, 0.35);
+      }
+
+      a:hover {
+        border-bottom-color: rgba(147, 197, 253, 0.75);
+      }
+
       small {
-        color: #94a3b8;
+        color: rgba(148, 163, 184, 0.85);
         display: block;
         text-align: center;
         margin-top: 2rem;
@@ -116,52 +131,116 @@
   <body>
     <main>
       <header>
-        <h1>Daisuke</h1>
-        <p>IT engineer passionate about resilient infrastructure and cloud-native operations.</p>
-        <span class="tagline">Cloud & infrastructure specialist</span>
+        <h1>Codex CLI</h1>
+        <p>ターミナルで会話しながら、修正→実行→検証まで回す“作業するAI”。</p>
+        <span class="tagline">Agentic coding in your terminal</span>
       </header>
 
       <section>
         <div class="panel">
-          <h2>About</h2>
+          <h2>Codex CLIとは</h2>
           <p>
-            As an IT engineer, I focus on keeping systems reliable and scalable while making sure teams can move fast.
-            I enjoy analyzing complex environments, automating repeatable tasks, and mentoring others through
-            operational challenges.
+            Codex CLIは、ローカルのリポジトリを読み取り、必要ならファイル編集やコマンド実行まで行いながら、タスクを前に進める開発支援ツールです。
+            いわゆる「チャットに答えるだけ」ではなく、<b>変更を実際に適用して結果を確かめる</b>ところまでが主戦場です。
           </p>
         </div>
       </section>
 
       <section>
         <div class="panel">
-          <h2>Skills & Tools</h2>
+          <h2>得意なユースケース</h2>
           <ul>
-            <li>IT infrastructure — system administration, monitoring, and resilience planning.</li>
-            <li>Cloud technology — designing secure architecture and automations across multi-cloud stacks.</li>
+            <li>仕様変更に伴う複数ファイル更新（UI/JS/設定/ドキュメント）を整合させる。</li>
+            <li>バグ再現→原因特定→最小修正→テスト/ビルド実行のループを短縮。</li>
+            <li>既存コードの読み解き（構造把握、依存関係、影響範囲の洗い出し）。</li>
+            <li>小さめの自動化（スクリプト追加、手順の定型化、CLI化）。</li>
           </ul>
         </div>
       </section>
 
       <section>
         <div class="panel hobby">
-          <h2>Outside the desk</h2>
+          <h2>使い方のコツ（経験者向け）</h2>
           <p>
-            Camping helps me recharge. Being in nature refreshes my curiosity about ecosystems—both digital and physical.
-            I bring the same patience and respect for preparation to every project.
+            プロンプトは「完成像」と「制約」を具体化すると精度が上がります（例：対象ファイル、守るデザイン、触ってよい範囲、受け入れ条件）。
+            また、実行コマンドの副作用やネットワーク制限がある環境では、<b>どこまで自動でやって良いか</b>を先に合意するとスムーズです。
           </p>
         </div>
       </section>
 
       <section>
         <div class="panel">
-          <h2>Demo</h2>
+          <h2>注意点</h2>
           <p>
-            p5.jsで作った<a href="./particles.html">パーティクルネットワーク</a>（近い粒子同士が線でつながるアニメーション）を見られます。
+            生成物はレビュー前提です。特にセキュリティ/ライセンス/料金/提供形態/リリース時期は変化しやすいため、
+            比較表の定量項目は<strong>公式の一次情報で確認</strong>してください。
           </p>
         </div>
       </section>
 
-      <small>Always learning, always improving.</small>
+      <section>
+        <div class="panel">
+          <h2>他社サービスとの比較（要確認）</h2>
+          <p>
+            以下は比較のための観点まとめです。料金やリリース時期、性能評価はプラン/地域/時期で変わるため、<b>最新情報の確認が必要</b>です。
+          </p>
+          <div style="overflow:auto; margin-top: 1rem">
+            <table style="width:100%; border-collapse: collapse; min-width: 860px">
+              <thead>
+                <tr>
+                  <th style="text-align:left; padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.18);">サービス</th>
+                  <th style="text-align:left; padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.18);">料金（目安）</th>
+                  <th style="text-align:left; padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.18);">性能/強みメモ</th>
+                  <th style="text-align:left; padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.18);">特徴</th>
+                  <th style="text-align:left; padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.18);">リリース時期</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">OpenAI / Codex CLI</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">リポジトリ操作＋実行を含むタスク駆動</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">CLI中心、編集とコマンド実行の往復</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">GitHub / Copilot</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">補完/チャット/提案のIDE統合</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">エディタ内の体験が強い</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">Amazon / Q Developer（旧CodeWhisperer等）</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">AWS文脈の支援が強い可能性（要確認）</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">クラウド連携・運用導線</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">Google / Gemini Code Assist</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">Google系ツール連携（要確認）</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">IDE/クラウド連携の選択肢</td>
+                  <td style="padding: 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.12);">要確認</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px;">Cursor（AIコードエディタ）</td>
+                  <td style="padding: 10px;">要確認</td>
+                  <td style="padding: 10px;">エディタ内での対話・編集フロー</td>
+                  <td style="padding: 10px;">プロジェクト横断編集の体験</td>
+                  <td style="padding: 10px;">要確認</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <small><a href="./particles.html">Particle demo</a> / Always learning, always improving.</small>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.3/lib/p5.min.js"></script>
+    <script src="./index-particles.js"></script>
   </body>
 </html>
